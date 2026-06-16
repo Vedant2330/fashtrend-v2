@@ -2,6 +2,7 @@ import { CinematicHero } from '@/components/hero/CinematicHero'
 import { ProductRail } from '@/components/lookbook/ProductRail'
 import { HeroToCollectionBridge } from '@/components/chapters/HeroToCollectionBridge'
 import { EditorialLookbook } from '@/components/lookbook/EditorialLookbook'
+import { FeaturedShowcase } from '@/components/lookbook/FeaturedShowcase'
 import { WorkshopAct } from '@/components/chapters/WorkshopAct'
 import { CommunityAct } from '@/components/chapters/CommunityAct'
 import { InvitationAct } from '@/components/chapters/InvitationAct'
@@ -16,7 +17,7 @@ export default function Home() {
       <FloatingNav />
       <CartDrawer />
       <main>
-        {/* Act I - The Opening (autoplay video hero) */}
+        {/* Act I — The Opening */}
         <CinematicHero
           videoSrc="/videos/hero-desktop.webm"
           mobileSrc="/videos/hero-mobile.webm"
@@ -25,19 +26,22 @@ export default function Home() {
         {/* Visual bridge */}
         <HeroToCollectionBridge />
 
-        {/* Act II - The Wardrobe (product rail with dock magnification) */}
+        {/* Act II — The Wardrobe */}
         <ProductRail products={PRODUCTS} />
 
-        {/* Act III - The Editorial Lookbook */}
+        {/* Featured product showcase */}
+        <FeaturedShowcase />
+
+        {/* Act III — Editorial Lookbook */}
         <EditorialLookbook />
 
-        {/* Act IV - The Workshop (customization) */}
+        {/* Act IV — The Workshop */}
         <WorkshopAct />
 
-        {/* Act V - The World (community) */}
+        {/* Act V — The World */}
         <CommunityAct />
 
-        {/* Act VI - The Invitation (CTA) */}
+        {/* Act VI — The Invitation */}
         <InvitationAct />
       </main>
       <SiteFooter />

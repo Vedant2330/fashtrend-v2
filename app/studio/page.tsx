@@ -60,12 +60,20 @@ export default function StudioPage() {
               >
                 <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
                   <Image
-                    src="/images/products/custom-attitude.webp"
+                    src="/images/editorial/studio-still.jpg"
                     alt="The Studio"
                     fill
                     className="object-cover"
                     sizes="(min-width: 1024px) 40vw, 100vw"
                   />
+                </div>
+                <div className="grid grid-cols-2 gap-3 mt-3">
+                  <div className="relative aspect-square rounded-xl overflow-hidden">
+                    <Image src="/images/detail/collar-stitching.jpg" alt="Craft" fill className="object-cover" sizes="200px" />
+                  </div>
+                  <div className="relative aspect-square rounded-xl overflow-hidden">
+                    <Image src="/images/detail/fabric-weave.jpg" alt="Fabric" fill className="object-cover" sizes="200px" />
+                  </div>
                 </div>
               </motion.div>
             </div>

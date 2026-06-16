@@ -2,8 +2,10 @@
 
 import { useRef, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, ChevronDown } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { FloatingElement, DepthLayers, FloatingBrandMark } from '@/components/visual/Floating3D'
 
 interface CinematicHeroProps {
   videoSrc: string
@@ -19,7 +21,6 @@ export function CinematicHero({ videoSrc, mobileSrc }: CinematicHeroProps) {
     setIsMobile(window.innerWidth < 768)
   }, [])
 
-  // Ensure video plays continuously
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
@@ -28,13 +29,10 @@ export function CinematicHero({ videoSrc, mobileSrc }: CinematicHeroProps) {
       try {
         await video.play()
       } catch (e) {
-        // Autoplay blocked, try muted play
         video.muted = true
         try {
           await video.play()
-        } catch (e2) {
-          // Give up
-        }
+        } catch (e2) {}
       }
     }
 
@@ -48,7 +46,7 @@ export function CinematicHero({ videoSrc, mobileSrc }: CinematicHeroProps) {
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-text-primary">
-      {/* Background video - plays continuously */}
+      {/* Background video */}
       <div className="absolute inset-0">
         {!isMobile ? (
           <video
@@ -79,19 +77,86 @@ export function CinematicHero({ videoSrc, mobileSrc }: CinematicHeroProps) {
         )}
       </div>
 
+      {/* Atmospheric depth layers */}
+      <DepthLayers />
+
+      {/* Large backdrop brand mark */}
+      <FloatingBrandMark />
+
+      {/* Floating apparel elements - desktop only */}
+      {!isMobile && (
+        <>
+          <FloatingElement
+            src="/images/products/cool-bold-cream.jpg"
+            alt="Premium oversized tee in cream"
+            className="top-[15%] left-[6%] hidden lg:block"
+            speed={0.6}
+            rotation={-8}
+            width={200}
+            height={260}
+            priority
+          />
+          <FloatingElement
+            src="/images/products/cool-bold-charcoal.jpg"
+            alt="Premium oversized tee in charcoal"
+            className="top-[20%] right-[8%] hidden lg:block"
+            speed={0.5}
+            rotation={6}
+            width={180}
+            height={240}
+          />
+          <FloatingElement
+            src="/images/detail/fabric-cotton.jpg"
+            alt="Premium cotton fabric detail"
+            className="bottom-[18%] left-[12%] hidden lg:block"
+            speed={0.4}
+            rotation={4}
+            width={160}
+            height={160}
+          />
+          <FloatingElement
+            src="/images/products/world-cup.jpg"
+            alt="Festival collection piece"
+            className="bottom-[20%] right-[14%] hidden xl:block"
+            speed={0.7}
+            rotation={-5}
+            width={170}
+            height={220}
+          />
+          <FloatingElement
+            src="/images/products/custom-attitude.jpg"
+            alt="Custom print design"
+            className="top-[45%] right-[20%] hidden xl:block"
+            speed={0.3}
+            rotation={-3}
+            width={120}
+            height={160}
+          />
+          <FloatingElement
+            src="/images/detail/tag-closeup.jpg"
+            alt="Brand tag detail"
+            className="top-[55%] left-[20%] hidden xl:block"
+            speed={0.5}
+            rotation={8}
+            width={120}
+            height={120}
+          />
+        </>
+      )}
+
       {/* Subtle premium overlay - vignette + bottom fade */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse at center, transparent 40%, rgba(13,13,13,0.25) 100%),
-            linear-gradient(180deg, rgba(13,13,13,0.35) 0%, rgba(13,13,13,0.05) 25%, rgba(13,13,13,0.10) 60%, rgba(13,13,13,0.55) 100%)
+            radial-gradient(ellipse at center, transparent 30%, rgba(13,13,13,0.30) 100%),
+            linear-gradient(180deg, rgba(13,13,13,0.40) 0%, rgba(13,13,13,0.10) 25%, rgba(13,13,13,0.15) 60%, rgba(13,13,13,0.60) 100%)
           `,
         }}
       />
 
       {/* Top edge darken for navbar contrast */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-text-primary/40 to-transparent pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-text-primary/50 to-transparent pointer-events-none" />
 
       {/* Content - centered */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
@@ -114,7 +179,7 @@ export function CinematicHero({ videoSrc, mobileSrc }: CinematicHeroProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.5 }}
-          className="text-background"
+          className="text-background max-w-5xl"
           style={{
             fontFamily: 'var(--font-serif), serif',
             fontSize: 'clamp(3.5rem, 10vw, 9rem)',
@@ -157,6 +222,30 @@ export function CinematicHero({ videoSrc, mobileSrc }: CinematicHeroProps) {
             Customize Your Tee
           </Link>
         </motion.div>
+
+        {/* Hero stats bar - subtle */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.1 }}
+          className="absolute bottom-32 md:bottom-40 left-0 right-0 hidden lg:flex justify-center gap-16 pointer-events-none"
+        >
+          {[
+            { num: '10K+', label: 'Orders shipped' },
+            { num: '50K+', label: 'Designs printed' },
+            { num: '15+', label: 'Countries' },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <p
+                className="text-background"
+                style={{ fontFamily: 'var(--font-serif), serif', fontSize: '1.5rem', fontWeight: 400, letterSpacing: '-0.02em' }}
+              >
+                {stat.num}
+              </p>
+              <p className="text-background/55 text-[10px] uppercase tracking-[0.2em] mt-0.5">{stat.label}</p>
+            </div>
+          ))}
+        </motion.div>
       </div>
 
       {/* Bottom: scroll indicator */}
@@ -174,13 +263,6 @@ export function CinematicHero({ videoSrc, mobileSrc }: CinematicHeroProps) {
           animate={{ scaleY: [0.3, 1, 0.3] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         />
-        <motion.div
-          className="mt-1"
-          animate={{ y: [0, 4, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <ChevronDown className="w-4 h-4 text-background/50" strokeWidth={1.5} />
-        </motion.div>
       </motion.div>
 
       {/* Loading state */}
