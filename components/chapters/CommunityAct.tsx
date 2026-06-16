@@ -3,7 +3,15 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, Instagram } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
+
+const InstagramIcon = ({ className = 'w-4 h-4' }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+)
 
 const UGC = [
   { id: 1, image: '/images/ugc/modi-meloni.webp', caption: 'Worn by the world' },
@@ -57,7 +65,7 @@ export function CommunityAct() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-text-primary hover:text-accent transition-colors group self-start md:self-end"
           >
-            <Instagram className="w-4 h-4" strokeWidth={1.5} />
+            <InstagramIcon />
             <span className="font-medium">@fash__trend</span>
             <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.5} />
           </motion.a>
