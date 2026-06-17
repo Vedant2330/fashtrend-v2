@@ -197,32 +197,7 @@ export function CinematicHero({ videoSrc, mobileSrc }: CinematicHeroProps) {
           Print it. Wear it. Flaunt it.
         </motion.h1>
 
-        {/* Spacing - clear gap before logo */}
-        <div className="h-10 md:h-14" />
-
-        {/* Dedicated logo space - clean, centered, with breathing room */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.7 }}
-          className="flex flex-col items-center"
-        >
-          <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-background flex items-center justify-center shadow-2xl shadow-text-primary/30 ring-1 ring-background/20">
-            <span
-              className="text-text-primary font-serif italic"
-              style={{ fontSize: '1.625rem', lineHeight: 1, fontWeight: 500 }}
-            >
-              F
-            </span>
-          </div>
-          <p
-            className="mt-3 tracking-[0.35em] uppercase text-background/75 text-[10px] md:text-[11px] font-medium"
-          >
-            Fashtrend
-          </p>
-        </motion.div>
-
-        {/* Spacing - clear gap after logo */}
+        {/* Spacing - clear gap after headline before tagline */}
         <div className="h-10 md:h-14" />
 
         {/* Subheadline */}
@@ -286,12 +261,13 @@ export function CinematicHero({ videoSrc, mobileSrc }: CinematicHeroProps) {
         ))}
       </motion.div>
 
-      {/* Bottom: scroll indicator - pinned to bottom edge */}
+      {/* Bottom: scroll indicator — positioned cleanly above stats with 16px+ clearance */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.4 }}
-        className="absolute bottom-7 md:bottom-9 left-0 right-0 z-10 flex flex-col items-center pointer-events-none"
+        className="absolute left-0 right-0 z-10 flex flex-col items-center pointer-events-none"
+        style={{ bottom: '130px' }}
       >
         <span className="text-background/70 text-[10px] tracking-[0.25em] uppercase font-medium mb-3">
           Scroll to Explore
