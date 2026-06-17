@@ -186,7 +186,7 @@ export function ProductRail({ products }: ProductRailProps) {
     if (!container) return
 
     let lastTime = performance.now()
-    const baseSpeed = 0.3 // pixels per ms - very cinematic
+    const baseSpeed = 0.15 // pixels per ms - very slow, almost subconscious (~50% of 0.3)
 
     const animate = (currentTime: number) => {
       if (!isPaused && container) {

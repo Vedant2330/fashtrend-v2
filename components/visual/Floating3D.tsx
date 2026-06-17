@@ -106,19 +106,19 @@ export function GradientMesh() {
   )
 }
 
-// Floating brand mark
+// Floating brand mark - positioned to upper-left, away from center logo
 export function FloatingBrandMark({ delay = 0 }: { delay?: number }) {
   return (
     <motion.div
-      className="absolute pointer-events-none"
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 0.06, scale: 1 }}
+      className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 pointer-events-none"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 0.05 }}
       transition={{ duration: 2, delay: 0.5 + delay }}
     >
       <motion.div
         animate={{ rotate: 360 }}
-        transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-        className="text-[20rem] font-serif italic leading-none text-text-primary select-none"
+        transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
+        className="text-[24rem] font-serif italic leading-none text-text-primary select-none"
         style={{ fontFamily: 'var(--font-serif), serif', fontWeight: 400 }}
       >
         f
